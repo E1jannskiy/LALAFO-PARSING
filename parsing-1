@@ -1,0 +1,41 @@
+from bs4 import BeautifulSoup
+import requests
+import json
+
+
+# URL = "https://lalafo.kg/api/search/v3/feed/search?expand=url&per-page=40&category_id=5830"
+# response = requests.get(url=URL)
+# soup = BeautifulSoup(response.content, "html.parser")
+
+# publics = soup.findAll("div", class_="listing")
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "device": "pc"
+}
+
+URL = "https://lalafo.kg/api/search/v3/feed/search?expand=url&per-page=40&category_id=5830"
+
+
+
+r = requests.get(URL, headers=headers)
+data = r.json()
+print(data)
+
+with open('lalafo_data.json', 'w', encoding='UTF-8') as file:
+    json.dump(data, file, indent=2, ensure_ascii=False)
+    print(f'Данные сохранены в lalafo_data.json')
+
+
+
+# URL = "https://lalafo.kg/api/search/v3/feed/search?expand=url&per-page=40&category_id=2044"
+
+
+# r = requests.get(URL, headers=headers)
+# data = r.json()
+# print(data)
+
+# with open('lalafo_data.json', 'w', encoding='UTF-8') as file:
+#     json.dump(data, file, indent=2, ensure_ascii=False)
+#     print(f'Данные сохранены в lalafo_data2.json')
